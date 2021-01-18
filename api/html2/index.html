@@ -742,8 +742,8 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="dictionariesGet" class="">
-                      <a href="#api-Default-dictionariesGet">dictionariesGet</a>
+                    <li data-group="Default" data-name="dictionariesNaaccrVersionGet" class="">
+                      <a href="#api-Default-dictionariesNaaccrVersionGet">dictionariesNaaccrVersionGet</a>
                     </li>
           </ul>
         </nav>
@@ -766,43 +766,43 @@
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-dictionariesGet">
-                      <article id="api-Default-dictionariesGet-0" data-group="User" data-name="dictionariesGet" data-version="0">
+                    <div id="api-Default-dictionariesNaaccrVersionGet">
+                      <article id="api-Default-dictionariesNaaccrVersionGet-0" data-group="User" data-name="dictionariesNaaccrVersionGet" data-version="0">
                         <div class="pull-left">
-                          <h1>dictionariesGet</h1>
-                          <p></p>
+                          <h1>dictionariesNaaccrVersionGet</h1>
+                          <p>Get a Dictionary by version number</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns a list of Dictionaries</p>
+                        <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dictionaries</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dictionaries/{naaccrVersion}</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-dictionariesGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-dictionariesGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-dictionariesGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-dictionariesGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-dictionariesNaaccrVersionGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesNaaccrVersionGet-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-dictionariesGet-0-curl">
+                          <div class="tab-pane active" id="examples-Default-dictionariesNaaccrVersionGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"//dictionaries"</code></pre>
+"//dictionaries/{naaccrVersion}"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-dictionariesGet-0-java">
+                          <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -816,44 +816,48 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         
         DefaultApi apiInstance = new DefaultApi();
+        Integer naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
         try {
-            array[Dictionary] result = apiInstance.dictionariesGet();
+            array[Dictionary] result = apiInstance.dictionariesNaaccrVersionGet(naaccrVersion);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#dictionariesGet");
+            System.err.println("Exception when calling DefaultApi#dictionariesNaaccrVersionGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-dictionariesGet-0-android">
+                          <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        Integer naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
         try {
-            array[Dictionary] result = apiInstance.dictionariesGet();
+            array[Dictionary] result = apiInstance.dictionariesNaaccrVersionGet(naaccrVersion);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#dictionariesGet");
+            System.err.println("Exception when calling DefaultApi#dictionariesNaaccrVersionGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-dictionariesGet-0-groovy">
+  <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">
+                            <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *naaccrVersion = 56; // Numeric ID of the NAACCR Version to get
+
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance dictionariesGetWithCompletionHandler: 
-              ^(array[Dictionary] output, NSError* error) {
+// Get a Dictionary by version number
+[apiInstance dictionariesNaaccrVersionGetWith:naaccrVersion
+              completionHandler: ^(array[Dictionary] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -864,10 +868,12 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-javascript">
+                            <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var NaaccrDataDictionaryApi = require('naaccr_data_dictionary_api');
 
 var api = new NaaccrDataDictionaryApi.DefaultApi()
+var naaccrVersion = 56; // {{Integer}} Numeric ID of the NAACCR Version to get
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -875,14 +881,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.dictionariesGet(callback);
+api.dictionariesNaaccrVersionGet(naaccrVersion, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-dictionariesGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-csharp">
+                            <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -891,21 +897,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class dictionariesGetExample
+    public class dictionariesNaaccrVersionGetExample
     {
         public void main()
         {
 
             var apiInstance = new DefaultApi();
+            var naaccrVersion = 56;  // Integer | Numeric ID of the NAACCR Version to get
 
             try
             {
-                array[Dictionary] result = apiInstance.dictionariesGet();
+                // Get a Dictionary by version number
+                array[Dictionary] result = apiInstance.dictionariesNaaccrVersionGet(naaccrVersion);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.dictionariesGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.dictionariesNaaccrVersionGet: " + e.Message );
             }
         }
     }
@@ -913,38 +921,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-php">
+                            <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
+$naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
 
 try {
-    $result = $api_instance->dictionariesGet();
+    $result = $api_instance->dictionariesNaaccrVersionGet($naaccrVersion);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->dictionariesGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->dictionariesNaaccrVersionGet: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-perl">
+                            <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
 
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $naaccrVersion = 56; # Integer | Numeric ID of the NAACCR Version to get
 
 eval { 
-    my $result = $api_instance->dictionariesGet();
+    my $result = $api_instance->dictionariesNaaccrVersionGet(naaccrVersion => $naaccrVersion);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->dictionariesGet: $@\n";
+    warn "Exception when calling DefaultApi->dictionariesNaaccrVersionGet: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-python">
+                            <div class="tab-pane" id="examples-Default-dictionariesNaaccrVersionGet-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -953,39 +963,70 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
+naaccrVersion = 56 # Integer | Numeric ID of the NAACCR Version to get
 
 try: 
-    api_response = api_instance.dictionaries_get()
+    # Get a Dictionary by version number
+    api_response = api_instance.dictionaries_naaccr_version_get(naaccrVersion)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->dictionariesGet: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->dictionariesNaaccrVersionGet: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
                           <h2>Parameters</h2>
 
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">naaccrVersion*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_dictionariesNaaccrVersionGet_naaccrVersion">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Numeric ID of the NAACCR Version to get
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
 
 
 
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - Successfully returned a list of Dictionaries </h3>
+                            <h3> Status: 200 - Successfully returned a NAACCR Dictionary </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-dictionariesGet-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-dictionariesNaaccrVersionGet-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-dictionariesGet-200-schema">
-                                  <div id='responses-dictionariesGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-dictionariesNaaccrVersionGet-200-schema">
+                                  <div id='responses-dictionariesNaaccrVersionGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Successfully returned a list of Dictionaries",
+  "description" : "Successfully returned a NAACCR Dictionary",
   "content" : {
     "application/json" : {
       "schema" : {
@@ -1011,14 +1052,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-dictionariesGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-dictionariesGet-200-schema-200');
+                                        $('#responses-dictionariesNaaccrVersionGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-dictionariesNaaccrVersionGet-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-dictionariesGet-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-dictionariesNaaccrVersionGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
