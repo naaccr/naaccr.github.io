@@ -689,13 +689,41 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["Version"] = {
+            defs["Dictionary"] = {
   "type" : "object",
   "properties" : {
     "naaccrVersion" : {
       "type" : "string"
+    },
+    "itemDefs" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/ItemDef"
+      }
     }
-  }
+  },
+  "description" : "Top-level container for a dictionary"
+};
+            defs["ItemDef"] = {
+  "type" : "object",
+  "properties" : {
+    "naaccrNum" : {
+      "type" : "string"
+    },
+    "naaccrName" : {
+      "type" : "string"
+    },
+    "naaccrId" : {
+      "type" : "string"
+    },
+    "length" : {
+      "type" : "string"
+    },
+    "dataType" : {
+      "type" : "string"
+    }
+  },
+  "description" : "Data Item definition"
 };
   </script>
 
@@ -714,8 +742,8 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="versionsGet" class="">
-                      <a href="#api-Default-versionsGet">versionsGet</a>
+                    <li data-group="Default" data-name="dictionariesGet" class="">
+                      <a href="#api-Default-dictionariesGet">dictionariesGet</a>
                     </li>
           </ul>
         </nav>
@@ -738,43 +766,43 @@
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-versionsGet">
-                      <article id="api-Default-versionsGet-0" data-group="User" data-name="versionsGet" data-version="0">
+                    <div id="api-Default-dictionariesGet">
+                      <article id="api-Default-dictionariesGet-0" data-group="User" data-name="dictionariesGet" data-version="0">
                         <div class="pull-left">
-                          <h1>versionsGet</h1>
+                          <h1>dictionariesGet</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns a list of Versions</p>
+                        <p class="marked">Returns a list of Dictionaries</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/versions</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dictionaries</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-versionsGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-versionsGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-versionsGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-versionsGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-versionsGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-versionsGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-versionsGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-versionsGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-versionsGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-versionsGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-versionsGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-dictionariesGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-dictionariesGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-dictionariesGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-dictionariesGet-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-versionsGet-0-curl">
+                          <div class="tab-pane active" id="examples-Default-dictionariesGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"//versions"</code></pre>
+"//dictionaries"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-versionsGet-0-java">
+                          <div class="tab-pane" id="examples-Default-dictionariesGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -789,17 +817,17 @@ public class DefaultApiExample {
         
         DefaultApi apiInstance = new DefaultApi();
         try {
-            array[Version] result = apiInstance.versionsGet();
+            array[Dictionary] result = apiInstance.dictionariesGet();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#versionsGet");
+            System.err.println("Exception when calling DefaultApi#dictionariesGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-versionsGet-0-android">
+                          <div class="tab-pane" id="examples-Default-dictionariesGet-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -807,25 +835,25 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         try {
-            array[Version] result = apiInstance.versionsGet();
+            array[Dictionary] result = apiInstance.dictionariesGet();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#versionsGet");
+            System.err.println("Exception when calling DefaultApi#dictionariesGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-versionsGet-0-groovy">
+  <div class="tab-pane" id="examples-Default-dictionariesGet-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-versionsGet-0-objc">
+                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance versionsGetWithCompletionHandler: 
-              ^(array[Version] output, NSError* error) {
+[apiInstance dictionariesGetWithCompletionHandler: 
+              ^(array[Dictionary] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -836,7 +864,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-versionsGet-0-javascript">
+                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var NaaccrDataDictionaryApi = require('naaccr_data_dictionary_api');
 
 var api = new NaaccrDataDictionaryApi.DefaultApi()
@@ -847,14 +875,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.versionsGet(callback);
+api.dictionariesGet(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-versionsGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-dictionariesGet-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-versionsGet-0-csharp">
+                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -863,7 +891,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class versionsGetExample
+    public class dictionariesGetExample
     {
         public void main()
         {
@@ -872,12 +900,12 @@ namespace Example
 
             try
             {
-                array[Version] result = apiInstance.versionsGet();
+                array[Dictionary] result = apiInstance.dictionariesGet();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.versionsGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.dictionariesGet: " + e.Message );
             }
         }
     }
@@ -885,22 +913,22 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-versionsGet-0-php">
+                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
 try {
-    $result = $api_instance->versionsGet();
+    $result = $api_instance->dictionariesGet();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->versionsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->dictionariesGet: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-versionsGet-0-perl">
+                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -908,15 +936,15 @@ use WWW::SwaggerClient::DefaultApi;
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 
 eval { 
-    my $result = $api_instance->versionsGet();
+    my $result = $api_instance->dictionariesGet();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->versionsGet: $@\n";
+    warn "Exception when calling DefaultApi->dictionariesGet: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-versionsGet-0-python">
+                            <div class="tab-pane" id="examples-Default-dictionariesGet-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -927,10 +955,10 @@ from pprint import pprint
 api_instance = swagger_client.DefaultApi()
 
 try: 
-    api_response = api_instance.versions_get()
+    api_response = api_instance.dictionaries_get()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->versionsGet: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->dictionariesGet: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -942,28 +970,28 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - Successfully returned a list of Versions </h3>
+                            <h3> Status: 200 - Successfully returned a list of Dictionaries </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-versionsGet-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-dictionariesGet-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-versionsGet-200-schema">
-                                  <div id='responses-versionsGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-dictionariesGet-200-schema">
+                                  <div id='responses-dictionariesGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Successfully returned a list of Versions",
+  "description" : "Successfully returned a list of Dictionaries",
   "content" : {
     "application/json" : {
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/Version"
+          "$ref" : "#/components/schemas/Dictionary"
         },
         "x-content-type" : "application/json"
       }
@@ -983,14 +1011,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-versionsGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-versionsGet-200-schema-200');
+                                        $('#responses-dictionariesGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-dictionariesGet-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-versionsGet-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-dictionariesGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
