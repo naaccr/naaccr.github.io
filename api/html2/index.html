@@ -689,22 +689,47 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+            defs["Code"] = {
+  "type" : "object",
+  "properties" : {
+    "codeValue" : {
+      "type" : "string"
+    },
+    "codeLabel" : {
+      "type" : "string"
+    }
+  }
+};
             defs["Dictionary"] = {
   "type" : "object",
   "properties" : {
     "naaccrVersion" : {
       "type" : "string"
     },
-    "itemDefs" : {
+    "dateOfPublication" : {
+      "type" : "string"
+    },
+    "items" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/components/schemas/ItemDef"
+        "$ref" : "#/components/schemas/Item"
       }
     }
   },
   "description" : "Top-level container for a dictionary"
 };
-            defs["ItemDef"] = {
+            defs["DictionaryVersion"] = {
+  "type" : "object",
+  "properties" : {
+    "naaccrVersion" : {
+      "type" : "string"
+    },
+    "dateOfPublication" : {
+      "type" : "string"
+    }
+  }
+};
+            defs["Item"] = {
   "type" : "object",
   "properties" : {
     "naaccrNum" : {
@@ -725,6 +750,14 @@
     "parentXmlElement" : {
       "type" : "string"
     },
+    "recordTypes" : {
+      "minItems" : 1,
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "description" : "Array of all Record Types that this item belongs to"
+      }
+    },
     "yearImplemented" : {
       "type" : "integer"
     },
@@ -741,7 +774,12 @@
       "type" : "string"
     },
     "alternateNames" : {
-      "type" : "string"
+      "minItems" : 0,
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "description" : "Array of all Record Types that this item belongs to"
+      }
     },
     "isNew" : {
       "type" : "boolean"
@@ -763,6 +801,15 @@
     },
     "clarification" : {
       "type" : "string"
+    },
+    "codingInstruction" : {
+      "type" : "string"
+    },
+    "codes" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/Code"
+      }
     }
   },
   "description" : "Data Item definition"
@@ -786,6 +833,17 @@
                   <li class="nav-header" data-group="Dictionary"><a href="#api-Dictionary">API Methods - Dictionary</a></li>
                     <li data-group="Dictionary" data-name="dictionaryNaaccrVersionGet" class="">
                       <a href="#api-Dictionary-dictionaryNaaccrVersionGet">dictionaryNaaccrVersionGet</a>
+                    </li>
+                  <li class="nav-header" data-group="DictionaryVersions"><a href="#api-DictionaryVersions">API Methods - DictionaryVersions</a></li>
+                    <li data-group="DictionaryVersions" data-name="dictionaryGet" class="">
+                      <a href="#api-DictionaryVersions-dictionaryGet">dictionaryGet</a>
+                    </li>
+                  <li class="nav-header" data-group="Item"><a href="#api-Item">API Methods - Item</a></li>
+                    <li data-group="Item" data-name="dictionaryNaaccrVersionNaaccrIdGet" class="">
+                      <a href="#api-Item-dictionaryNaaccrVersionNaaccrIdGet">dictionaryNaaccrVersionNaaccrIdGet</a>
+                    </li>
+                    <li data-group="Item" data-name="dictionaryNaaccrVersionNaaccrNumGet" class="">
+                      <a href="#api-Item-dictionaryNaaccrVersionNaaccrNumGet">dictionaryNaaccrVersionNaaccrNumGet</a>
                     </li>
           </ul>
         </nav>
@@ -1102,6 +1160,936 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-dictionaryNaaccrVersionGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-DictionaryVersions">
+                  <h1>DictionaryVersions</h1>
+                    <div id="api-DictionaryVersions-dictionaryGet">
+                      <article id="api-DictionaryVersions-dictionaryGet-0" data-group="User" data-name="dictionaryGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>dictionaryGet</h1>
+                          <p>Get a list of all Dictionary versions</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dictionary</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-DictionaryVersions-dictionaryGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-DictionaryVersions-dictionaryGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-DictionaryVersions-dictionaryGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//dictionary"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DictionaryVersionsApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DictionaryVersionsApiExample {
+
+    public static void main(String[] args) {
+        
+        DictionaryVersionsApi apiInstance = new DictionaryVersionsApi();
+        try {
+            array[DictionaryVersion] result = apiInstance.dictionaryGet();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DictionaryVersionsApi#dictionaryGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DictionaryVersionsApi;
+
+public class DictionaryVersionsApiExample {
+
+    public static void main(String[] args) {
+        DictionaryVersionsApi apiInstance = new DictionaryVersionsApi();
+        try {
+            array[DictionaryVersion] result = apiInstance.dictionaryGet();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DictionaryVersionsApi#dictionaryGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DictionaryVersionsApi *apiInstance = [[DictionaryVersionsApi alloc] init];
+
+// Get a list of all Dictionary versions
+[apiInstance dictionaryGetWithCompletionHandler: 
+              ^(array[DictionaryVersion] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NaaccrDataDictionaryApi = require('naaccr_data_dictionary_api');
+
+var api = new NaaccrDataDictionaryApi.DictionaryVersionsApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.dictionaryGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class dictionaryGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DictionaryVersionsApi();
+
+            try
+            {
+                // Get a list of all Dictionary versions
+                array[DictionaryVersion] result = apiInstance.dictionaryGet();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DictionaryVersionsApi.dictionaryGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDictionaryVersionsApi();
+
+try {
+    $result = $api_instance->dictionaryGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DictionaryVersionsApi->dictionaryGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DictionaryVersionsApi;
+
+my $api_instance = WWW::SwaggerClient::DictionaryVersionsApi->new();
+
+eval { 
+    my $result = $api_instance->dictionaryGet();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DictionaryVersionsApi->dictionaryGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DictionaryVersions-dictionaryGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DictionaryVersionsApi()
+
+try: 
+    # Get a list of all Dictionary versions
+    api_response = api_instance.dictionary_get()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DictionaryVersionsApi->dictionaryGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully returned the complete list of all supported NAACCR Dictionary versions </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-dictionaryGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-dictionaryGet-200-schema">
+                                  <div id='responses-dictionaryGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully returned the complete list of all supported NAACCR Dictionary versions",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DictionaryVersion"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-dictionaryGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-dictionaryGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-dictionaryGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-Item">
+                  <h1>Item</h1>
+                    <div id="api-Item-dictionaryNaaccrVersionNaaccrIdGet">
+                      <article id="api-Item-dictionaryNaaccrVersionNaaccrIdGet-0" data-group="User" data-name="dictionaryNaaccrVersionNaaccrIdGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>dictionaryNaaccrVersionNaaccrIdGet</h1>
+                          <p>Get a single Item by Version and NAACCR Id</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dictionary/{naaccrVersion}/{naaccrId}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//dictionary/{naaccrVersion}/{naaccrId}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.ItemApi;
+
+import java.io.File;
+import java.util.*;
+
+public class ItemApiExample {
+
+    public static void main(String[] args) {
+        
+        ItemApi apiInstance = new ItemApi();
+        Integer naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
+        String naaccrId = naaccrId_example; // String | NAACCR Id of the Item to get
+        try {
+            array[Item] result = apiInstance.dictionaryNaaccrVersionNaaccrIdGet(naaccrVersion, naaccrId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ItemApi#dictionaryNaaccrVersionNaaccrIdGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.ItemApi;
+
+public class ItemApiExample {
+
+    public static void main(String[] args) {
+        ItemApi apiInstance = new ItemApi();
+        Integer naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
+        String naaccrId = naaccrId_example; // String | NAACCR Id of the Item to get
+        try {
+            array[Item] result = apiInstance.dictionaryNaaccrVersionNaaccrIdGet(naaccrVersion, naaccrId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ItemApi#dictionaryNaaccrVersionNaaccrIdGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *naaccrVersion = 56; // Numeric ID of the NAACCR Version to get
+String *naaccrId = naaccrId_example; // NAACCR Id of the Item to get
+
+ItemApi *apiInstance = [[ItemApi alloc] init];
+
+// Get a single Item by Version and NAACCR Id
+[apiInstance dictionaryNaaccrVersionNaaccrIdGetWith:naaccrVersion
+    naaccrId:naaccrId
+              completionHandler: ^(array[Item] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NaaccrDataDictionaryApi = require('naaccr_data_dictionary_api');
+
+var api = new NaaccrDataDictionaryApi.ItemApi()
+var naaccrVersion = 56; // {{Integer}} Numeric ID of the NAACCR Version to get
+var naaccrId = naaccrId_example; // {{String}} NAACCR Id of the Item to get
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.dictionaryNaaccrVersionNaaccrIdGet(naaccrVersion, naaccrId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class dictionaryNaaccrVersionNaaccrIdGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new ItemApi();
+            var naaccrVersion = 56;  // Integer | Numeric ID of the NAACCR Version to get
+            var naaccrId = naaccrId_example;  // String | NAACCR Id of the Item to get
+
+            try
+            {
+                // Get a single Item by Version and NAACCR Id
+                array[Item] result = apiInstance.dictionaryNaaccrVersionNaaccrIdGet(naaccrVersion, naaccrId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling ItemApi.dictionaryNaaccrVersionNaaccrIdGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiItemApi();
+$naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
+$naaccrId = naaccrId_example; // String | NAACCR Id of the Item to get
+
+try {
+    $result = $api_instance->dictionaryNaaccrVersionNaaccrIdGet($naaccrVersion, $naaccrId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ItemApi->dictionaryNaaccrVersionNaaccrIdGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::ItemApi;
+
+my $api_instance = WWW::SwaggerClient::ItemApi->new();
+my $naaccrVersion = 56; # Integer | Numeric ID of the NAACCR Version to get
+my $naaccrId = naaccrId_example; # String | NAACCR Id of the Item to get
+
+eval { 
+    my $result = $api_instance->dictionaryNaaccrVersionNaaccrIdGet(naaccrVersion => $naaccrVersion, naaccrId => $naaccrId);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling ItemApi->dictionaryNaaccrVersionNaaccrIdGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrIdGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.ItemApi()
+naaccrVersion = 56 # Integer | Numeric ID of the NAACCR Version to get
+naaccrId = naaccrId_example # String | NAACCR Id of the Item to get
+
+try: 
+    # Get a single Item by Version and NAACCR Id
+    api_response = api_instance.dictionary_naaccr_version_naaccr_id_get(naaccrVersion, naaccrId)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ItemApi->dictionaryNaaccrVersionNaaccrIdGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">naaccrVersion*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_dictionaryNaaccrVersionNaaccrIdGet_naaccrVersion">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Numeric ID of the NAACCR Version to get
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">naaccrId*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_dictionaryNaaccrVersionNaaccrIdGet_naaccrId">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          NAACCR Id of the Item to get
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully returned a NAACCR Item </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-dictionaryNaaccrVersionNaaccrIdGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-dictionaryNaaccrVersionNaaccrIdGet-200-schema">
+                                  <div id='responses-dictionaryNaaccrVersionNaaccrIdGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a NAACCR Item",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Item"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-dictionaryNaaccrVersionNaaccrIdGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-dictionaryNaaccrVersionNaaccrIdGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-dictionaryNaaccrVersionNaaccrIdGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Item-dictionaryNaaccrVersionNaaccrNumGet">
+                      <article id="api-Item-dictionaryNaaccrVersionNaaccrNumGet-0" data-group="User" data-name="dictionaryNaaccrVersionNaaccrNumGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>dictionaryNaaccrVersionNaaccrNumGet</h1>
+                          <p>Get a single Item by Version and NAACCR Item Number</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dictionary/{naaccrVersion}/{naaccrNum}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//dictionary/{naaccrVersion}/{naaccrNum}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.ItemApi;
+
+import java.io.File;
+import java.util.*;
+
+public class ItemApiExample {
+
+    public static void main(String[] args) {
+        
+        ItemApi apiInstance = new ItemApi();
+        Integer naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
+        Integer naaccrNum = 56; // Integer | NAACCR Item Number of the Item to get
+        try {
+            array[Item] result = apiInstance.dictionaryNaaccrVersionNaaccrNumGet(naaccrVersion, naaccrNum);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ItemApi#dictionaryNaaccrVersionNaaccrNumGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.ItemApi;
+
+public class ItemApiExample {
+
+    public static void main(String[] args) {
+        ItemApi apiInstance = new ItemApi();
+        Integer naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
+        Integer naaccrNum = 56; // Integer | NAACCR Item Number of the Item to get
+        try {
+            array[Item] result = apiInstance.dictionaryNaaccrVersionNaaccrNumGet(naaccrVersion, naaccrNum);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ItemApi#dictionaryNaaccrVersionNaaccrNumGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *naaccrVersion = 56; // Numeric ID of the NAACCR Version to get
+Integer *naaccrNum = 56; // NAACCR Item Number of the Item to get
+
+ItemApi *apiInstance = [[ItemApi alloc] init];
+
+// Get a single Item by Version and NAACCR Item Number
+[apiInstance dictionaryNaaccrVersionNaaccrNumGetWith:naaccrVersion
+    naaccrNum:naaccrNum
+              completionHandler: ^(array[Item] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NaaccrDataDictionaryApi = require('naaccr_data_dictionary_api');
+
+var api = new NaaccrDataDictionaryApi.ItemApi()
+var naaccrVersion = 56; // {{Integer}} Numeric ID of the NAACCR Version to get
+var naaccrNum = 56; // {{Integer}} NAACCR Item Number of the Item to get
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.dictionaryNaaccrVersionNaaccrNumGet(naaccrVersion, naaccrNum, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class dictionaryNaaccrVersionNaaccrNumGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new ItemApi();
+            var naaccrVersion = 56;  // Integer | Numeric ID of the NAACCR Version to get
+            var naaccrNum = 56;  // Integer | NAACCR Item Number of the Item to get
+
+            try
+            {
+                // Get a single Item by Version and NAACCR Item Number
+                array[Item] result = apiInstance.dictionaryNaaccrVersionNaaccrNumGet(naaccrVersion, naaccrNum);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling ItemApi.dictionaryNaaccrVersionNaaccrNumGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiItemApi();
+$naaccrVersion = 56; // Integer | Numeric ID of the NAACCR Version to get
+$naaccrNum = 56; // Integer | NAACCR Item Number of the Item to get
+
+try {
+    $result = $api_instance->dictionaryNaaccrVersionNaaccrNumGet($naaccrVersion, $naaccrNum);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ItemApi->dictionaryNaaccrVersionNaaccrNumGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::ItemApi;
+
+my $api_instance = WWW::SwaggerClient::ItemApi->new();
+my $naaccrVersion = 56; # Integer | Numeric ID of the NAACCR Version to get
+my $naaccrNum = 56; # Integer | NAACCR Item Number of the Item to get
+
+eval { 
+    my $result = $api_instance->dictionaryNaaccrVersionNaaccrNumGet(naaccrVersion => $naaccrVersion, naaccrNum => $naaccrNum);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling ItemApi->dictionaryNaaccrVersionNaaccrNumGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Item-dictionaryNaaccrVersionNaaccrNumGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.ItemApi()
+naaccrVersion = 56 # Integer | Numeric ID of the NAACCR Version to get
+naaccrNum = 56 # Integer | NAACCR Item Number of the Item to get
+
+try: 
+    # Get a single Item by Version and NAACCR Item Number
+    api_response = api_instance.dictionary_naaccr_version_naaccr_num_get(naaccrVersion, naaccrNum)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ItemApi->dictionaryNaaccrVersionNaaccrNumGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">naaccrVersion*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_dictionaryNaaccrVersionNaaccrNumGet_naaccrVersion">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          Numeric ID of the NAACCR Version to get
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">naaccrNum*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_dictionaryNaaccrVersionNaaccrNumGet_naaccrNum">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                                      <div class="inner description">
+                                                          NAACCR Item Number of the Item to get
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successfully returned a NAACCR Item </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-dictionaryNaaccrVersionNaaccrNumGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-dictionaryNaaccrVersionNaaccrNumGet-200-schema">
+                                  <div id='responses-dictionaryNaaccrVersionNaaccrNumGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successfully returned a NAACCR Item",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Item"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-dictionaryNaaccrVersionNaaccrNumGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-dictionaryNaaccrVersionNaaccrNumGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-dictionaryNaaccrVersionNaaccrNumGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2205,7 +3193,7 @@ except ApiException as e:
   
       _classCallCheck(this, JSONSchemaView);
   
-      this.schema = schema; //console.log(schema);
+      this.schema = schema;
       this.open = open;
       this.options = options;
       this.isCollapsed = open <= 0;
@@ -2218,7 +3206,7 @@ except ApiException as e:
       // Determine if a schema is an array
       this.isArray = !this.isAny && this.schema && this.schema.type === 'array';
   
-      this.isObject = this.schema && (this.schema.type === 'object' || this.schema.properties || this.schema.anyOf || this.schema.oneof || this.schema.allOf);
+      this.isObject = this.schema && (this.schema.type === 'object' || this.schema.properties || this.schema.allOf);
   
       // Determine if a schema is a primitive
       this.isPrimitive = !this.isAny && !this.isArray && !this.isObject;
